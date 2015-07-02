@@ -2,9 +2,9 @@
 
 adduser ords
 
-chown ords /opt/ords.3.0.0
-chown ords /var/logs/ords
-chown ords /var/run/ords
+chown -R ords /opt/ords.3.0.0
+chown -R ords /var/log/ords
+chown -R ords /var/run/ords
 
 echo /var/run/ords/
 

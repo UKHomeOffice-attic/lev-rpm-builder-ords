@@ -14,7 +14,7 @@ cp /root/rpmbuild/config/ords_params.properties /root/ords/opt/ords.3.0.0/params
 
 cd /root/rpmbuild/ || exit 1
 
-mkdir -p /root/ords/var/logs/ords/ /root/ords/var/run/ords/ || exit 1
+mkdir -p /root/ords/var/log/ords/ /root/ords/var/run/ords/ || exit 1
 
 fpm -s dir -t rpm -C /root/ords/ \
     -n ords \

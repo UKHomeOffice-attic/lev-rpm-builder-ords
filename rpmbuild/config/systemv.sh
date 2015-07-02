@@ -7,11 +7,12 @@
 
 SERVICE_NAME=ords
 USERNAME=ords
-ERROR_LOG=/var/logs/ords/err.log
-LOG=/var/logs/ords/out.log
+ERROR_LOG=/var/log/ords/err.log
+LOG=/var/log/ords/out.log
 SERVICE_HOME=/opt/ords.3.0.0
 PATH_TO_WAR=/opt/ords.3.0.0/ords.war
 STOP_TIMEOUT_SECS=120
+TZ=UTC
 
 # Derived values:
 PID_PATH_NAME=/var/run/${SERVICE_NAME}/${SERVICE_NAME}-pid
@@ -36,10 +37,9 @@ function is_running() {
 
 function reload_config() {
   if [[ ${SERVICE_HOME}/params/ords_params.properties -nt ${SERVICE_HOME}/config_updated_at ]]; then
-    touch ${SERVICE_HOME}/config_updated_at
-
-    mkdir -p ${SERVICE_HOME}/conf
-    su ${USERNAME} -c "cd ${SERVICE_HOME} ; java -jar ords.war configdir ${SERVICE_HOME}/conf "
+    touch "${SERVICE_HOME}/config_updated_at"
+    su "${USERNAME}" -c "mkdir -p ${SERVICE_HOME}/conf"
+    su "${USERNAME}" -c "cd ${SERVICE_HOME} ; java -Duser.timezone=${TZ} -jar ords.war configdir ${SERVICE_HOME}/conf "
   fi
 
   return 0
@@ -50,7 +50,7 @@ function start_service() {
   echo "Starting $SERVICE_NAME ..."
   if ! is_running; then
     reload_config
-    su ${USERNAME} -c "cd ${SERVICE_HOME} ; nohup ${JAVA_BIN} -Dfile.encoding=UTF-8 -jar $PATH_TO_WAR 2>> ${ERROR_LOG} >>${LOG} & echo \$! > $PID_PATH_NAME"
+    su "${USERNAME}" -c "cd ${SERVICE_HOME} ; nohup ${JAVA_BIN} -Duser.timezone=${TZ} -Dfile.encoding=UTF-8 -jar $PATH_TO_WAR 2>> ${ERROR_LOG} >>${LOG} & echo \$! > $PID_PATH_NAME"
     exit_code=$?
     PID=$(cat $PID_PATH_NAME)
     if [ $exit_code -eq 0 ]; then

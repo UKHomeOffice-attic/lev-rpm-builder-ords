@@ -1,7 +1,7 @@
 FROM centos:6
 MAINTAINER billie@purplebooth.co.uk
 
-RUN yum -y install ruby ruby-devel gem rubygems unzip gcc rpm-build
+RUN yum -y install ruby ruby-devel gem rubygems unzip gcc rpm-build wget
 
 RUN gem install fpm
 COPY run.sh /run.sh
