@@ -28,5 +28,7 @@ fpm -s dir -t rpm -C /root/ords/ \
     --config-files opt/ords.3.0.0/config_updated_at \
     --config-files opt/ords.3.0.0/params/ords_params.properties || exit 1
 
+echo ${RPM_OUTPUT_DIR:-/rpmbuild}
+ls ${RPM_OUTPUT_DIR:-/rpmbuild}
 cp *.rpm "${RPM_OUTPUT_DIR:-/rpmbuild}" || exit 1
 
