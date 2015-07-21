@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+wget -O /root/rpmbuild/ords.3.0.0.121.10.23.zip $ORDS_ZIP
 
 mkdir -p /root/ords/opt/ords.3.0.0 /root/ords/etc/init.d/ || exit 1
 # Prepare

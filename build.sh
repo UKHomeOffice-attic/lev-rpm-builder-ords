@@ -21,6 +21,7 @@ if [ ${SUDO:-1} -eq "1" ]; then
     sudo docker run \
         --name=$CONTAINER_NAME \
         -e "RPM_OUTPUT_DIR=/rpms" \
+        -e "ORDS_ZIP=$ORDS_ZIP" \
         -v "$SHARED_TEMP_HOST:/rpms" \
         $TAG && \
     sudo docker rm $CONTAINER_NAME
@@ -32,6 +33,7 @@ else
     docker run \
         --name=$CONTAINER_NAME \
         -e "RPM_OUTPUT_DIR=/rpms" \
+        -e "ORDS_ZIP=$ORDS_ZIP" \
         -v "$SHARED_TEMP_HOST:/rpms" \
         $TAG && \
     docker rm $CONTAINER_NAME
