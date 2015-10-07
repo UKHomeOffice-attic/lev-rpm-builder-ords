@@ -1,5 +1,7 @@
 # Docker Oracle REST Data Services RPM Builder
 
+[![Build Status](https://travis-ci.org/UKHomeOffice/lev-rpm-builder-ords.svg?branch=master)](https://travis-ci.org/UKHomeOffice/lev-rpm-builder-ords)
+
 This project contains a Dockerfile for a container that will build an Oracle REST Data Service RPM package with SystemV script.
 
 ## Getting Started
