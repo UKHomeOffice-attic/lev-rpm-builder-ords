@@ -1,7 +1,8 @@
-FROM centos:6
+FROM quay.io/ukhomeofficedigital/docker-centos-base
 MAINTAINER billie@purplebooth.co.uk
 
-RUN yum -y install ruby ruby-devel gem rubygems unzip gcc rpm-build wget
+# Install Ruby
+RUN yum -y install ruby ruby-devel gem rubygems unzip gcc rpm-build wget && yum groupinstall "Development Tools" -y
 
 RUN gem install fpm
 COPY run.sh /run.sh
