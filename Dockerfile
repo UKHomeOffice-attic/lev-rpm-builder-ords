@@ -1,4 +1,4 @@
-FROM quay.io/ukhomeofficedigital/docker-centos-base
+FROM quay.io/ukhomeofficedigital/centos-base
 MAINTAINER billie@purplebooth.co.uk
 
 # Install Ruby
